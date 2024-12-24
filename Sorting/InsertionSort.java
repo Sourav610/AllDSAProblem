@@ -17,11 +17,9 @@ public class InsertionSort {
             arr[i] = Integer.parseInt(br.readLine());
         }
 
-        for(int i = 0; i<n; i++){
-            int j = i;
-            while(j> 0 && arr[j-1] > arr[j]){
-                int temp = arr[j-1];
-                arr[j-1] = arr[j];
+        //insertion sort - consider two array one sorted and one unsorted. put the element from unsorted array to shorted array. 
+        //initiall shorted array will be empty and unsorted array will be full mantain using index. 
+        //then check the element from unshorted array to be placed at which position in sorted array then replace by shifting and swapping.   arr[j-1] = arr[j];
                 arr[j] = temp;
                 j--;
             }
