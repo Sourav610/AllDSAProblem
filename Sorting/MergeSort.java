@@ -80,4 +80,36 @@ public class MergeSort {
             k++;
         }
     }
+
+    //More optimized way of merging(in c++)
+    // void merge1(vector<int>&arr, int left, int mid, int right){
+    //     int n1 = left;
+    //     int n2 = mid+1;
+        
+    //     vector<int>temp;
+    //     while(n1 <= mid && n2<= right){
+    //         if(arr[n1] < arr[n2]){
+    //             temp.push_back(arr[n1]);
+    //             n1++;
+    //         }
+    //         else{
+    //             temp.push_back(arr[n2]);
+    //             n2++;
+    //         }
+    //     }
+        
+    //     while(n1<=mid){
+    //         temp.push_back(arr[n1]);
+    //         n1++;
+    //     }
+        
+    //     while(n2<=right){
+    //         temp.push_back(arr[n2]);
+    //         n2++;
+    //     }
+        
+    //     for(int i = left; i<= right; i++){
+    //         arr[i] = temp[i-left];
+    //     }
+    // }
 }
