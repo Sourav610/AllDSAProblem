@@ -30,7 +30,7 @@ public class CheckArraySortedAndRotated {
             }
         }
         
-        //if array is rotated at some point then the last element should be small then first element.
+        //if array is rotated at some point then the last element should be smaller then first element.
         if(arr[arr.length-1] > arr[0]){
             flag++;
         }
