@@ -44,7 +44,7 @@ public class RotateArray {
     }
 
     public static void RotateOptimize(int []arr, int k){
-        int startInd = arr.length - k%arr.length;
+        int startInd = arr.length - k%arr.length; // taking reminder if k> arr length
 
         reverse(arr, 0, startInd-1);   
         reverse(arr, startInd, arr.length-1);
