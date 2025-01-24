@@ -17,7 +17,7 @@ public class SortZeroOneTwoInOrder {
             arr[i] = Integer.parseInt(br.readLine());
         }
         //Using three pointer approach
-        //l = 0, m = 0, h = n-1, always check m if it is one increment it, if it is two swap with hihg, if it is zero swap with low
+        //l = 0, m = 0, h = n-1, always check m if it is one increment it, if it is two swap with high, if it is zero swap with low
         sort(arr);
 
         System.out.println("Element after sorting: ");
