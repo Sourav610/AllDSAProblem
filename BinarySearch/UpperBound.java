@@ -4,6 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/*
+ * This question is related to upper Bound.
+ * upper bound means any number which is strictly greater than the given number
+ */
 public class UpperBound {
     public static void main(String args[]) throws IOException{
         int n; 

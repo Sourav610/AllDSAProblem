@@ -4,6 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/*
+ * This question is related to lower bound.
+ * lower bound means any number from the given array which is just greater and equal to the target element.
+ */
 public class LowerBound {
     public static void main(String args[]) throws IOException{
         int n; 
