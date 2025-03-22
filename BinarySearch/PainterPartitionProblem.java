@@ -6,25 +6,16 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
 
-/* 
- * Given an integer array nums and an integer k, split nums into k non-empty subarrays such that the largest sum of any subarray is minimized.
-
-Return the minimized largest sum of the split.
-
-A subarray is a contiguous part of the array.
-
-same as bookAllocationProblem
-*/
-
 /*
- * PATTERN - Try to think in question what we need to maximize or minimize then
- * take that value from array like min value will be maxElement and maxValue will be total sum of array element and traverse in that range and try what question
- * ask like number of subarrays, no. of books,etc
- *  and check if it is equals to the number question provide, if it 
- * then that is your answer.
- */
+ * 
+ * Given an array/list of length ‘n’, where the array/list represents the boards and each element
+ *  of the given array/list represents the length of each board. Some ‘k’ numbers of painters are available to paint
+ *  these boards. Consider that each unit of a board takes 1 unit of time to paint.
 
-public class SplitArrayLargestSum {
+You are supposed to return the area of the minimum time to get this job done of painting all the
+ ‘n’ boards under a constraint that any painter will only paint the continuous sections of boards.
+ */
+public class PainterPartitionProblem {
      public static void main(String args[]) throws IOException{
         int n; 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -36,22 +27,22 @@ public class SplitArrayLargestSum {
         for(int i = 0; i<n; i++){
             arr[i] = Integer.parseInt(br.readLine());
         }
-        System.out.println("Enter the maximum sub array: ");
+        System.out.println("Enter the maximum painter : ");
         int key =  Integer.parseInt(br.readLine());
       
-        // ans = splitArray(arr,key);
-        ans = optimzeSplitArray(arr, key);
+        // ans = splitPainter(arr,key);
+        ans = optimzeSplitPainter(arr, key);
         
         System.out.println("The ans is: "+ans);
     }
 
-    public static int splitArray(int[]arr, int key){
+    public static int splitPainter(int[]arr, int key){
         if(arr.length<key)return -1;
         List<Integer>ans = findMaxAndSum(arr);
         int low = ans.get(0);
         int high = ans.get(1);
         for(int i = low; i<=high; i++){
-            if(checkArrangement(arr, i) == key){
+            if(checkArrangement(arr, i) <= key){
                 return i;
             }
         }
@@ -75,7 +66,7 @@ public class SplitArrayLargestSum {
     }
 
 
-    public static int optimzeSplitArray(int[]arr, int student){
+    public static int optimzeSplitPainter(int[]arr, int student){
         if(arr.length<student)return -1;
         List<Integer>ans = findMaxAndSum(arr);
         int low = ans.get(0),high = ans.get(1);
