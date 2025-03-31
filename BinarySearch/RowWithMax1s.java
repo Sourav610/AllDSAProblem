@@ -22,7 +22,8 @@ public class RowWithMax1s {
         }
         int ans = -1;
         // ans = findMaxRow(arr);
-        ans = optimizeFindMaxRowWith1s(arr);
+        // ans = optimizeFindMaxRowWith1s(arr);
+        ans = usingBinarySearch(arr);
         System.out.println("The ans is: "+ans);
     }
 
@@ -72,5 +73,53 @@ public class RowWithMax1s {
         }
 
         return maxIndex;
+    }
+
+    /*
+     * We are going to use the Binary Search algorithm to optimize the approach.
+
+The primary objective of the Binary Search algorithm is to efficiently determine the appropriate half to eliminate, thereby reducing the search space by half. It does this by determining a specific condition that ensures that the target is not present in that half.
+
+We cannot optimize the row traversal but we can optimize the counting of 1’s for each row.
+
+Instead of counting the number of 1’s, we can use the following formula to calculate the number of 1’s:
+Number_of_ones = m(number of columns) - first occurrence of 1(0-based index).
+
+As, each row is sorted, we can find the first occurrence of 1 in each row using any of the following approaches:
+
+lowerBound(1) (ref: Implement Lower Bound)
+upperBound(0) (ref: Implement Upper Bound)
+firstOccurrence(1) (ref: First and Last Occurrences in Array)
+     */
+
+    public static int usingBinarySearch(int[][]arr){
+        int maxCount = Integer.MIN_VALUE;
+        int n = arr.length;
+        int m = arr.length;
+        int ind = 0;
+        for(int i = 0; i<arr.length; i++){
+            int count = m - lowerBound(arr[i],1,m);
+            if(count > maxCount){
+                maxCount = count;
+                ind = i;
+            }
+        }
+        return ind;
+    }
+
+    public static int lowerBound(int[]ans, int k, int m){
+        int low = 0, high = m-1;
+        int res = m;
+        while(low<= high){
+            int mid = (low+high)/2;
+            if(ans[mid] >= k){
+                res = mid;
+                high = mid-1;
+            }
+            else{
+                low = mid+1;
+            }
+        }
+        return res;
     }
 }
