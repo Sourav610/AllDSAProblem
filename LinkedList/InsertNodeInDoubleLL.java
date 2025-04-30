@@ -45,7 +45,7 @@ public class InsertNodeInDoubleLL {
             temp = temp.next;
         }
 
-        insertNode(head,pos,val);
+        head = insertNode(head,pos,val);
 
         while(head != null){
             System.out.println("The value is :"+head.data);
@@ -53,7 +53,7 @@ public class InsertNodeInDoubleLL {
         }
     }
 
-    public static void insertNode(Node head, int x, int val){
+    public static Node insertNode(Node head, int x, int val){
 
         Node temp = head;
         Node prev = null;
@@ -66,15 +66,15 @@ public class InsertNodeInDoubleLL {
         if(temp == head){
             Node node = new Node(val);
             node.next = head;
-            head->prev = node;
+            head.prev = node;
         }
 
         if(temp.next != null){
             Node node  = new Node(val);
-            prev->next = node;
-            node->next = temp;
-            node->prev = prev;
-            temp->prev = node;
+            prev.next = node;
+            node.next = temp;
+            node.prev = prev;
+            temp.prev = node;
         }
 
         if(temp.next == null){

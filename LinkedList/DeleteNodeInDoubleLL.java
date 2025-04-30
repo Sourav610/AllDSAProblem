@@ -31,7 +31,7 @@ public class DeleteNodeInDoubleLL {
             temp = temp.next;
         }
 
-        head = deleteNode(head,pos);
+        head =  deleteNode(head,pos);
 
         while(head != null){
             System.out.println("The value is :"+head.data);
