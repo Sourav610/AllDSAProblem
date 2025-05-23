@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 class Node {
     int data;
     Node next;
+    public Object prev;
     Node(int d){
         data = d;
         next = null;

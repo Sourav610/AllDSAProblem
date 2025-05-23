@@ -5,6 +5,17 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+class Node {
+    int data;
+    Node prev;
+    Node next;
+
+    Node(int data){
+        this.data = data;
+        prev = null;
+        next = null;
+    }
+}
 public class FindPairsInDoubleLL {
     public static void main(String[]args) throws IOException{
         int n;

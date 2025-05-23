@@ -3,7 +3,17 @@ package LinkedList;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+class Node {
+    int data;
+    Node prev;
+    Node next;
 
+    Node(int data){
+        this.data = data;
+        prev = null;
+        next = null;
+    }
+}
 public class DeleteNodeInDoubleLL {
     public static void main(String[]args) throws IOException{
         int n;
