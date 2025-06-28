@@ -22,7 +22,7 @@ public class CheckSubsequenceWithSumK{
     }
 
     public static boolean checkSubsequence(int i, int[]arr, int k, int s){
-        if(i == arr.length){
+        if(i == arr.length || s > k){ /* sum > target will not go more recursion so little optimize */
             if(s == k){
                 return true;
             }
