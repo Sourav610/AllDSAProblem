@@ -1,4 +1,4 @@
-1's compilement - filp the digit of the binary number you will get the 1's compilement
+1's compilement - flip the digit of the binary number you will get the 1's compilement
 2's compilement - first do 1's compilement and then add 1 to that binary number.
 Right shift(>>) - e.g right shift by 1 means remove right most bit and add 0 at left
                 (shortcut -  x >> k means x/(2^k))
@@ -13,6 +13,7 @@ for negative it convert the number into 2's compilement and then store  the left
 larget Int value = 2^31 -1 (INT_MAX)
 smallest Int value = -2^31
 
+XOR(^) - even no. of 1's = 0, odd no. of 1's =  1
 Not(~) = flip the bits
         - if not of positive number we are taking then 
         - first filp and then check 31's bit is 0 or 1 if 1
