@@ -32,10 +32,17 @@ public class CheckPrime {
         }
     }
 
+    /*
+     * (n/i != i) we are doing because already we check n is divisble by i and then we are checking 
+     * that by getting the quetiont which is differnt from i if it is different then this number can also divide
+     * that why increasing count.
+     * 
+     * also if count is exactly 2(1 and itself) then prime number else not prime
+     */
     public static void checkOptimalPrime(int n){
         int range = (int)Math.sqrt(n);
         int count = 0;
-        for(int i = 2; i<= range; i++){
+        for(int i = 1; i<= range; i++){
             if(n%i == 0){
                 count ++;
                 if(n/i != i){
@@ -43,11 +50,11 @@ public class CheckPrime {
                 }
             }
         }
-        if(count > 2){
-            System.out.println("Not a prime number");
+        if(count == 2){
+            System.out.println("prime number");
         }
         else{
-            System.out.println("Prime number");
+            System.out.println("Not a Prime number");
         }
     }
 }
