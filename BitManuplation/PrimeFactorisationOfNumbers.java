@@ -115,7 +115,7 @@ public class PrimeFactorisationOfNumbers {
     }
 
     /*
-     * T.C - O(sqrt(N)*logN)
+     * T.C - O(sqrt(N)*N)
      * S.c - it depends on number of prime factors.
      */
 
@@ -137,6 +137,47 @@ public class PrimeFactorisationOfNumbers {
             ans.add(res);
 
         }
+        return ans;
+    }
+
+    /* 
+    Using Sieve of Eratosthenes algorithm 
+    - first we will create smallest prime factor array of size MAX Limit given and fill all value with index value.
+    - now we will take first prime number 2 and iterate it multiple and the value we got, we will go to that index and update its value
+    to smallest  prime 2. same for next prime  number like 3.
+    - for checking prime if index and its value are same then its prime.
+
+    T.C - Nlog(logN) + O(Qlog base2 N); here Q - size of array and N - max limit.
+    S.C - O(N)
+    */
+
+    public static ArrayList<ArrayList<Integer>>findPrimeFactorUsingSieve(int[]arr){
+        ArrayList<ArrayList<Integer>>ans = new ArrayList<>();
+        int[]value = new int[100001];
+        for(int i = 1; i<value.length; i++){
+            value[i] = i;
+        }
+        for(int i = 2; i*i<value.length; i++){
+            if(value[i] == i){
+                for(int j = i*i; j<=100000; j++){
+                    if(value[j] == j){
+                        value[j] = i;
+                    }
+                }
+            }
+        }
+
+        // T.c - O(log base2 n)
+        for(int i = 0; i<arr.length; i++){
+            int n = arr[i];
+            ArrayList<Integer>temp = new ArrayList<>();
+            while(n != 1){
+                temp.add(value[n]);
+                n /= value[n];
+            }
+            ans.add(temp);
+        }
+        
         return ans;
     }
 }
