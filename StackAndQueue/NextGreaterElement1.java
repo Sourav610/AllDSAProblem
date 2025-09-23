@@ -106,7 +106,8 @@ public class NextGreaterElement1 {
     }
 
     /*
-     * This approach is same as above just for circular arr we increase the size of arr to two times and use modulo.
+     * This approach is same as above just for circular arr we increase the size of arr to two times and use modulo for circular array.
+     * - modula = currentElement%totalsize - it will give 0 if reach last element and give correct index if less than array size.
      */
     public static int[] findOptimizeNGECircularArr(int[]arr1, int[]arr2){
         Stack<Integer>st = new Stack();
