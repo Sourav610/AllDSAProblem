@@ -60,6 +60,22 @@ public class NextGreaterElementToRight {
 
     }
 
+    /*
+     * Approach: using Fenwick Tree(BIT)
+     * T.c - O(nlog n+q)
+     * S.C - O(n)
+     * 
+     * What is a Fenwick Tree (BIT)?
+
+Think of it as a “smart array” that helps you quickly:
+
+Update: add a value at a position.
+
+Query: get the sum of values up to a position.
+
+It’s like a running total machine — but instead of recalculating everything every time, it cleverly reuses partial sums.
+     */
+
     public static int[] findOptimizeElementCount(int[]arr1,int[]arr2){
         int n = arr1.length;
         int[]sorted = arr1.clone();

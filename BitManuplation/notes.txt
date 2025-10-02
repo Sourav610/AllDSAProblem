@@ -1,5 +1,5 @@
 1's compilement - flip the digit of the binary number you will get the 1's compilement
-2's compilement - first do 1's compilement and then add 1 to that binary number.
+2's compilement - first do 1's compilement and then add 1 to that binary number.(also represented as -i)
 Right shift(>>) - e.g right shift by 1 means remove right most bit and add 0 at left
                 (shortcut -  x >> k means x/(2^k))
 Left Shift(<<) - e.g left shift by 1 means remove the left most bit and add 0 at the right.
