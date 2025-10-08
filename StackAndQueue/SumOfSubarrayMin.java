@@ -23,7 +23,8 @@ public class SumOfSubarrayMin {
 
         int ans = 0;
         // ans = findSumSubarrayMin(arr);
-        ans = findOptimizeSumSubarrayMin(arr);
+        ans = findSumSubarrayMin2(arr);
+        // ans = findOptimizeSumSubarrayMin(arr);
         System.out.println("The ans is: "+ans);
     }
 
@@ -34,6 +35,7 @@ public class SumOfSubarrayMin {
      */
     public static int findSumSubarrayMin(int[]arr){
         int ans = 0; 
+        int mod = (int)1e9+7;
         for(int i = 0; i<arr.length; i++){
             for(int j = 0; j<arr.length -i; j++){
                 int minVal = Integer.MAX_VALUE;
@@ -41,10 +43,28 @@ public class SumOfSubarrayMin {
                     minVal = Math.min(minVal,arr[k]);
                 }
 
-                ans = (ans%1000000007)+minVal;
+                ans = (ans%mod)+minVal;
             }
         }
 
+        return ans;
+    }
+
+    /*
+     * T.c - O(n^2);
+     * S.C - O(1);
+     */
+    public static int findSumSubarrayMin2(int[]arr){
+        int ans = 0;
+        int mod = (int)1e9+7;
+        int n = arr.length;
+        for(int i = 0; i<n; i++){
+            int minVal = arr[i];
+            for(int j = i; j<n;j++){
+                minVal = Math.min(minVal,arr[j]);
+                ans = (ans + minVal)%mod;
+            }
+        }
         return ans;
     }
 
