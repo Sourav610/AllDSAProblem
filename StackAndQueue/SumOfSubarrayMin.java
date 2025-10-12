@@ -23,8 +23,8 @@ public class SumOfSubarrayMin {
 
         int ans = 0;
         // ans = findSumSubarrayMin(arr);
-        ans = findSumSubarrayMin2(arr);
-        // ans = findOptimizeSumSubarrayMin(arr);
+        // ans = findSumSubarrayMin2(arr);
+        ans = findOptimizeSumSubarrayMin(arr);
         System.out.println("The ans is: "+ans);
     }
 
@@ -77,6 +77,32 @@ public class SumOfSubarrayMin {
      * Once both left and right arrays are filled with proper indices, calculate the sum. By iterating over all indices i, 
      * find the product of the count of subarrays where arr[i] is the minimum
      *  ((i - left[i]) * (right[i] - i)) and arr[i]. This represents the sum of arr[i] for all i in its valid subarrays.
+     * 
+     Formula is based on :
+
+     Example
+
+Say candies are [3, 1, 2].
+
+Candy 3: It is only smallest in [3].
+
+Candy 1: It is the smallest in [1], [3,1], [1,2], [3,1,2].
+
+Candy 2: It is the smallest in [2].
+
+Now add: 3 + (1+1+1+1) + 2 = 9.
+     How do we count quickly?
+
+Think like this for any candy arr[i]:
+
+Look left 👈: how many ways can I stretch to the left before I find a smaller candy?
+(That’s how many choices we have for the left side of the group.)
+
+Look right 👉: how many ways can I stretch to the right before I find a smaller or equal candy?
+(That’s how many choices we have for the right side of the group.)
+
+Multiply them:
+LeftChoices × RightChoices = total number of groups where this candy is the smallest.
      * 
      * T.C - O(n);
      * S.C - O(n);

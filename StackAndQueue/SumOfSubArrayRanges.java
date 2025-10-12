@@ -3,6 +3,8 @@ package StackAndQueue;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Stack;
 
 public class SumOfSubArrayRanges{
     public static void main(String[]args) throws IOException{
@@ -19,7 +21,8 @@ public class SumOfSubArrayRanges{
 
         long ans = 0; 
         // ans = findSubArrayRange(arr);
-        ans = findOptimizeSubArrayRange(arr);
+        // ans = findOptimizeSubArrayRange(arr);
+        ans = findSubArrayRangeUsingSubminAndSubMax(arr);
         System.out.println("The result is : "+ans);
 
     }
@@ -53,5 +56,80 @@ public class SumOfSubArrayRanges{
             }
         }
         return sum;
+    }
+
+    public static long findSubArrayRangeUsingSubminAndSubMax(int[]arr){
+        int n =arr.length;
+        long sumMin = 0;
+        long sumMax = 0;
+        int leftMin[] = new int[n];
+        int rightMin[] = new int[n];
+
+        int leftMax[] = new int[n];
+        int rightMax[] = new int[n];
+
+        Arrays.fill(leftMin,-1);
+        Arrays.fill(leftMax,-1);
+        Arrays.fill(rightMin,n);
+        Arrays.fill(rightMax,n);
+
+        Stack<Integer>st = new Stack();
+
+        for(int i = 0; i<n; i++){
+            while(!st.empty() && arr[st.peek()] >= arr[i]){
+                st.pop();
+            }
+            if(!st.empty()){
+                leftMin[i] = st.peek();
+            }
+            st.push(i);
+        }
+
+        st.clear();
+
+        for(int i = n-1; i>= 0; i--){
+            while(!st.empty() && arr[st.peek()] > arr[i]){
+                st.pop();
+            }
+            if(!st.empty()){
+                rightMin[i] = st.peek();
+            }
+            st.push(i);
+        }
+
+        for(int i = 0; i<n; i++){
+            sumMin += (long)(i-leftMin[i])*(long)(rightMin[i] -i)*(long)arr[i];
+        }
+
+        st.clear();
+
+        for(int i = 0; i<n; i++){
+            while(!st.empty() && arr[st.peek()] <= arr[i]){
+                st.pop();
+            }
+            if(!st.empty()){
+                leftMax[i] = st.peek();
+            }
+            st.push(i);
+        }
+
+        st.clear();
+
+        for(int i = n-1; i>= 0; i--){
+            while(!st.empty() && arr[st.peek()] < arr[i]){
+                st.pop();
+            }
+            if(!st.empty()){
+                rightMax[i] = st.peek();
+            }
+            st.push(i);
+        }
+
+        for(int i = 0; i<n; i++){
+            sumMax += (long)(i-leftMax[i])*(long)(rightMax[i] -i)*(long)arr[i];
+        }
+
+        long ans = sumMax - sumMin;
+        return ans;
     }
 }
