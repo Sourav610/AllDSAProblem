@@ -48,6 +48,9 @@ public class LargestRectangleInHistogram {
      *  and the next smaller element.
      * 
      * So for each element we will find previous smaller and next smaller element and finally we will calculate the area.
+     * 
+     * T.C - O(3n)
+     * S.c - O(n)
      */
     public static int findOptimizeLargetRectangle(int[]arr,int n){
         int[]leftSmall = new int[n];
