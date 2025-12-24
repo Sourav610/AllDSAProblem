@@ -6,6 +6,10 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
+/*
+Given a string s and an integer k.Find the length of the longest substring with at most k distinct characters
+*/
+
 public class LongestSubstringwithAtMostKDistinctCharacters{
     public static void main(String[]args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
