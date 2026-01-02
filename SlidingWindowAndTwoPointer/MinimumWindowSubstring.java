@@ -20,8 +20,8 @@ public class MinimumWindowSubstring {
         String t = br.readLine();
 
         String ans;
-        // ans = calculateMinWindowSubstringBruteForce(s,t);
-        ans = calculateMInWindowSubStringOptimize(s, t);
+        ans = calculateMinWindowSubstringBruteForce(s,t);
+        // ans = calculateMInWindowSubStringOptimize(s, t);
         System.out.println("The minimum window substring is: "+ans);
     }
 
