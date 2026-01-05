@@ -1,7 +1,8 @@
 package Heaps;
 
 
-class BinaryHeap{
+
+class MaxBinaryHeap{
     // Maximum elements that can be stored in heap
   int capacity;
 
@@ -11,7 +12,7 @@ class BinaryHeap{
   // Array for storing the keys
   int arr[];
 
-  BinaryHeap(int cap){
+  MaxBinaryHeap(int cap){
         // Assigning the capacity
       capacity = cap;
 
@@ -52,8 +53,8 @@ class BinaryHeap{
       int k = size;
       size++;
 
-      // Fix the min heap property
-      while(k != 0 && arr[parent(k)] > arr[k]){
+      // Fix the max heap property
+      while(k != 0 && arr[parent(k)] < arr[k]){
           int temp = arr[parent(k)];
           arr[parent(k)] = arr[k];
           arr[k] = temp;
@@ -69,32 +70,34 @@ class BinaryHeap{
       int li = Left(ind);
 
       //initially assume violated value is minimum
-      int smallest = ind;
+      int largest = ind;
 
-      if(li< size && arr[li] < arr[smallest]){
-          smallest = li;
+      if(li < size && arr[li] > arr[largest]){
+          largest = li;
       }
 
-      if(ri < size && arr[ri] < arr[smallest]){
-          smallest = ri;
+      if(ri < size && arr[ri] > arr[largest]){
+          largest = ri;
       }
 
        // If the Minimum among the three nodes is not the parent itself,
       // then swap and call Heapify recursively
-      if(smallest != ind){
+      if(largest != ind){
           int temp = arr[ind];
-          arr[ind] = arr[smallest];
-          arr[smallest] = temp;
-          Heapify(smallest);
+          arr[ind] = arr[largest];
+          arr[largest] = temp;
+          Heapify(largest);
       }
   }
 
-  int getMin(){
-      return arr[0];
+  int getMax(){
+    if (size <= 0)
+        throw new IllegalStateException("Heap is empty");
+    return arr[0];
   }
 
-  int ExtractMin(){
-      if(size <= 0 ){
+  int ExtractMax(){
+      if(size <= 0){
           return Integer.MAX_VALUE;
       }
 
@@ -103,7 +106,7 @@ class BinaryHeap{
           return arr[0];
       }
 
-      int mini = arr[0];
+      int max = arr[0];
 
       // Copy last Node value to root Node
       arr[0] = arr[size-1];   
@@ -113,15 +116,15 @@ class BinaryHeap{
       // Call heapify on root node
       Heapify(0);
 
-      return mini;
+      return max;
   }
 
-  void DecreaseKey(int i , int val){
+  void IncreaseKey(int i , int val){
       //updating the new val
       arr[i] = val;
 
       //fixing the Min heap
-      while(i !=  0 && arr[parent(i)] > arr[i]){
+      while(i !=  0 && arr[parent(i)] < arr[i]){
           int temp = arr[parent(i)];
           arr[parent(i)] = arr[i];
           arr[i] = temp;
@@ -131,8 +134,8 @@ class BinaryHeap{
   }
 
   void Delete(int i ){
-      DecreaseKey(i, Integer.MIN_VALUE);
-      ExtractMin();
+      IncreaseKey(i, Integer.MAX_VALUE);
+      ExtractMax();
   }
 
   void print() {
@@ -142,9 +145,10 @@ class BinaryHeap{
     }
 }
 
-public class CreateMinHeapUsingBinaryTree{
+
+public class CreateMaxHeapUsingBinaryTree {
     public static void main(String[]args){
-        BinaryHeap h = new BinaryHeap(20);
+        MaxBinaryHeap h = new MaxBinaryHeap(20);
         
         h.Insert(4);
         h.Insert(1);
@@ -155,18 +159,18 @@ public class CreateMinHeapUsingBinaryTree{
         h.Insert(8);
         h.Insert(5);
     
-        System.out.println("Min value is " + h.getMin());
+        System.out.println("Max value is " + h.getMax());
     
-        h.Insert(-1);
-        System.out.println("Min value is " + h.getMin());
+        h.Insert(10);
+        System.out.println("Max value is " + h.getMax());
     
-        h.DecreaseKey(3, -2);
-        System.out.println("Min value is " + h.getMin());
+        h.IncreaseKey(3, 12);
+        System.out.println("Max value is " + h.getMax());
     
-        h.ExtractMin();
-        System.out.println("Min value is " + h.getMin());
+        h.ExtractMax();
+        System.out.println("Max value is " + h.getMax());
     
         h.Delete(0);
-        System.out.println("Min value is " + h.getMin());
+        System.out.println("Max value is " + h.getMax());
     }
 }
