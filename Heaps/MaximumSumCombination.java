@@ -10,6 +10,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.PriorityQueue;
 
+
+/*
+You are given two integer arrays a[] and b[] of equal size. A sum combination is formed by adding
+ one element from a[] and one from b[], using each index pair (i, j) at most once. Return the top
+  k maximum sum combinations, sorted in non-increasing order.
+*/
 public class MaximumSumCombination {
     public static void main(String[]args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -61,6 +67,18 @@ public class MaximumSumCombination {
         }
         return temp;
     }
+
+    /*
+    
+    The idea is to combine the largest elements from both arrays to form the highest possible sums. 
+    By sorting the arrays in descending order, we ensure that the sum at indices (0, 0) is the maximum.
+     From this point, the next potential largest sums lie at positions (i+1, j) and (i, j+1) because of 
+     the sorted order. By exploring these candidates using a max heap and tracking visited index pairs,
+      we efficiently gather the top k combinations without redundantly computing all n2 possibilities.
+      
+      T.C - O(n*logn)
+      S.C - O(k)
+      */
 
     public static ArrayList<Integer>calculateSumOptimize(int[]arr,int[]val,int k){
         int n = arr.length;
