@@ -19,7 +19,7 @@ int add(int val) Adds a new test score val to the stream and returns the element
 
 /* 
  Time Complexity: O(log k), per insertion each insertion into the min-heap takes O(log k) time. 
- Since we maintain a heap of at most k elements, both inserting a new number and removing the smallest (if needed) are log k operations.
+  qqSince we maintain a heap of at most k elements, both inserting a new number and removing the smallest (if needed) are log k operations.
 
 Space Complexity:O(k),The min-heap stores only the top k largest elements at any time. So space usage is proportional to k.
 
