@@ -69,7 +69,8 @@ In the average case (when the pivot is chosen randomly):
 Assuming the array gets divided into two equal parts, with every partitioning step, the search range is reduced by half. Thus, the time complexity is O(N + N/2 + N/4 + ... + 1) = O(N).
 
 In the worst-case scenario (when the element at the left or right index is chosen as the pivot):
-In such cases, the array is divided into two unequal halves, and the search range is reduced by one element with every partitioning step. Thus, the time complexity is O(N + N-1 + N-2 + ... + 1) = O(N2). However, the probability of this worst-case scenario is negligible.
+In such cases, the array is divided into two unequal halves, and the search range is reduced by one element with every partitioning step. 
+Thus, the time complexity is O(N + N-1 + N-2 + ... + 1) = O(N2). However, the probability of this worst-case scenario is negligible.
 
 Space Complexity: O(1), as we are modifying the input array in place and using only a constant amount of extra space.
     */
