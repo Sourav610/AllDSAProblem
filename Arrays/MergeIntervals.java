@@ -75,9 +75,13 @@ public class MergeIntervals {
         });
     
         for(int i = 0; i<arr.length; i++){
+              // if the list of merged intervals is empty or if the current
+            // interval does not overlap with the previous, simply append it.
             if(ans.isEmpty() || arr[i][0] > ans.get(ans.size()-1).get(1)){
                 ans.add(Arrays.asList(arr[i][0],arr[i][1]));
             }
+            // otherwise, there is overlap, so we merge the current and previous
+            // intervals.
             else{
                 ans.get(ans.size()-1).set(1,Math.max(ans.get(ans.size()-1).get(1),arr[i][1]));
             }
