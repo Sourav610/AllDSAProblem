@@ -35,7 +35,26 @@ public class PostOrderTraversal{
     }
 
     public static List<Integer> postOrderTraversal(Node root){
-        Stack<Integer>st1 = new Stack<>();
-        
+        Stack<Node>st1 = new Stack<>();
+        Stack<Node>st2 = new Stack<>();
+        List<Integer>ans = new ArrayList<Integer>();
+
+        st1.add(root);
+        while(!st1.empty()){
+            Node curr = st1.pop();
+            if(curr != null){
+                st1.push(curr.left);
+                st1.push(curr.right);
+                st2.push(curr);
+            }
+        }
+
+        while(!st2.empty()){
+            Node curr = st2.pop();
+            if(curr != null){
+                ans.add(curr.data);
+            }
+        }
+        return ans;
     }
 }

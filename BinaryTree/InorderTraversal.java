@@ -35,7 +35,19 @@ public class InorderTraversal{
     }
 
     public static List<Integer> inOrderTraversal(Node root){
-        Stack<Integer>st1 = new Stack<>();
+        Stack<Node>st1 = new Stack<>();
+        List<Integer>ans = new ArrayList<Integer>();
+        Node curr = root;
+        while(!st1.empty() || curr != null){
+            while(curr != null){
+                st1.add(curr);
+                curr = curr.left;
+            }
+            curr = st1.pop();
+            ans.add(curr.data);
+            curr = curr.right;
+        }
+        return ans;
         
     }
 }
