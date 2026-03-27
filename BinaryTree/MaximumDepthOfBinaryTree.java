@@ -8,7 +8,8 @@ public class MaximumDepthOfBinaryTree{
         Solution sol = new Solution();
         Node node = sol.createNode();
         int ans = 0;
-        ans = calculateMaxDepth(node);
+        // ans = calculateMaxDepth(node);
+        ans = calculateHeight(node);
         System.out.println("The maximum depth of binary tree: "+ans);
     }
 
@@ -34,5 +35,15 @@ public class MaximumDepthOfBinaryTree{
             
         }
         return length;
+    }
+
+    public static int calculateHeight(Node temp){
+        if(temp == null){
+            return 0;
+        }
+
+        int left = calculateHeight(temp.left);
+        int right = calculateHeight(temp.right);
+        return Math.max(left,right)+1;
     }
 }
