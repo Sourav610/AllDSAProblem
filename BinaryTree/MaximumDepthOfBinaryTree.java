@@ -13,6 +13,7 @@ public class MaximumDepthOfBinaryTree{
         System.out.println("The maximum depth of binary tree: "+ans);
     }
 
+    //Time complexity - O(N), Space complexity = O(n)
     public static int calculateMaxDepth(Node temp){
         Queue<Node>eleQueue = new LinkedList<>();
         int size = 0, length = 0;
@@ -37,6 +38,8 @@ public class MaximumDepthOfBinaryTree{
         return length;
     }
 
+    // Time complexity = O(N) as only traversing all node, no node traverse same
+    //Space complexity = O(1)
     public static int calculateHeight(Node temp){
         if(temp == null){
             return 0;
