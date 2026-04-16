@@ -1,11 +1,8 @@
 package BinaryTree;
-
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class CreateBTWithInorderAndPreOrder{
+public class CreateBTWithInorderAndPreorder{
     public static void main(String[]args){
         int[] inorder = {9, 3, 15, 20, 7};
         int[] preorder = {3, 9, 20, 15, 7};
@@ -28,7 +25,7 @@ public class CreateBTWithInorderAndPreOrder{
         printInorder(root.right);
     }
 
-    public static buildTree(int[]preOrder,int preStart, int preEnd,int[]inOrder,int inStart, int inEnd,Map<Integer,Integer>mp){
+    public static Node buildTree(int[]preOrder,int preStart, int preEnd,int[]inOrder,int inStart, int inEnd,Map<Integer,Integer>mp){
         if(preStart> preEnd || inStart > inEnd){
             return null;
         }
