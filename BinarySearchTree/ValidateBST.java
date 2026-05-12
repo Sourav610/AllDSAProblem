@@ -32,6 +32,8 @@ public class ValidateBST{
                 break;
             }
         }
+
+        res = validateBSTUsingMinMax(root,Integer.MIN_VALUE,Integer.MAX_VALUE);
         System.out.println("The bst is valid? "+res);
     }
 
@@ -42,5 +44,19 @@ public class ValidateBST{
         doInOrderTraversal(root.left, ans);
         ans.add(root.val);
         doInOrderTraversal(root.right, ans);
+    }
+
+    //in this approach when going left the left value should not be greater than the curr val
+    //when going right the right val should not be less than the curr val
+    public static boolean validateBSTUsingMinMax(Node root, int min, int max){
+        if(root == null){
+            return true;
+        }
+
+        if(root.val<= min || root.val >= max){
+            return false;
+        }
+
+        return validateBSTUsingMinMax(root.left, min, root.val) && validateBSTUsingMinMax(root.right, root.val, max);
     }
 }
