@@ -48,7 +48,7 @@ public class DeleteNodeInBST{
         - the root->left is null return right;
         - the root->right is null return left;
         - if both left and right null return null;
-    2. if it is a leaf node then
+    2. if it is a leaf node then remove directly
     3. if it a node having only left child then return the left child and vice versa
     4. if it is a node having both child then
         - take any child subtree left/right and find the rightMostNode if taking left subtree, in that subtree and point the another subtree
