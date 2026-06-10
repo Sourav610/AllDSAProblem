@@ -28,24 +28,36 @@ public class CycleDetecInUndirectedGraph {
 
         boolean ans = false;
         // Using BFS
-        ans = bfsTraverse(adjList, 0, -1, visited);
+        // ans = bfsTraverse(adjList, 0, -1, visited);
+        // Using dfs
+
+        for(int i = 0; i<V; i++){
+            if(!visited[i]){
+                if(dfsTraverse(adjList, 0, -1, visited)){
+                    ans = true;
+                    break;
+                }
+            }
+        }
 
         System.out.println("is there any cyclic component: " + ans);
 
     }
+
+    //here using parent node to check for cycle if one node contain two different parent means it is creating a cycle.
 
     public static boolean bfsTraverse(List<List<Integer>> adjList, int start, int parent, boolean[] visited) {
         
         for (int i = 0; i < adjList.size(); i++) {
             if(!visited[i]){
                 Queue<int[]> elQueue = new LinkedList();
-                elQueue.add(new int[] { start, parent });
-                visited[start] = true;
+                elQueue.add(new int[] { i, parent });
+                visited[i] = true;
                 while (!elQueue.isEmpty()) {
                     int[] val = elQueue.poll();
                     for (Integer it : adjList.get(val[0])) {
-                        if (!visited[val[0]]) {
-                            visited[val[0]] = true;
+                        if (!visited[it]) {
+                            visited[it] = true;
                             elQueue.add(new int[] { it, val[0] });
                         } else if (val[1] != it) {
                             return true;
@@ -58,5 +70,21 @@ public class CycleDetecInUndirectedGraph {
         return false;
 
     }
+
+    public static boolean dfsTraverse(List<List<Integer>> adjList, int start, int parent, boolean[]visited){
+        visited[start] = true;
+
+        for(Integer it: adjList.get(start)){
+            if(!visited[it]){
+                visited[it] = true;
+                dfsTraverse(adjList, it, start, visited);
+            }
+            else if(parent != it){
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 }
