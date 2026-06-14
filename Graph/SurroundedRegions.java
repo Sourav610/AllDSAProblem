@@ -23,7 +23,8 @@ public class SurroundedRegions{
             {'X','X','X','X'}            
             };
 
-        fillTheBoard(board);
+        // fillTheBoard(board);
+        fillTheBoardUsingDFs(board);
 
         for(int i = 0; i<board.length; i++){
             for(int j = 0; j<board.length; j++){
@@ -94,6 +95,62 @@ public class SurroundedRegions{
 
 
     public static void fillTheBoardUsingDFs(char[][]board){
-        
+        if(board.length == 0){
+            return;
+        }
+        int n = board.length;
+        int m = board[0].length;
+        int[][] visited = new int[board.length][board[0].length];
+
+        int[] dx = {1,0,-1,0};
+        int[] dy = {0,1,0,-1};
+
+        for(int i = 0; i<m; i++){
+            if(visited[0][i] == 0 && board[0][i] == 'O'){
+                dfs(board,0,i,visited,dx,dy);
+            }
+            if(visited[n-1][i] == 0 && board[n-1][i] == 'O'){
+                dfs(board,n-1,i,visited,dx,dy);
+            }
+        }
+
+        for(int i = 0; i<n; i++){
+            if(visited[i][0] == 0 && board[i][0] == 'O'){
+                dfs(board,i,0,visited,dx,dy);
+            }
+            if(visited[i][m-1] == 0 && board[i][m-1] == 'O'){
+                dfs(board,i,m-1,visited,dx,dy);
+            }
+        }
+
+        for(int i = 0; i<board.length; i++){
+            for(int j = 0; j<board[i].length; j++){
+                if(visited[i][j] == 0 && board[i][j] == 'O'){
+                    // System.out.print(i+" "+j);
+                    board[i][j] = 'X';
+                }
+            }
+        }
+
+
+
+    }
+
+    public static void dfs(char[][] board, int x, int y, int[][]visited,int[]dx,int[]dy){
+        visited[x][y] = 1;
+
+        for(int i = 0; i<4; i++){
+            int nr = x+dx[i];
+            int nc = y+dy[i];
+            
+            if(nr < 0 || nr >= board.length || nc < 0 || nc >= board[0].length || visited[nr][nc] == 1){
+                continue;
+            }
+
+            if(board[nr][nc] == 'O'){
+                dfs(board, nr, nc, visited, dx, dy);
+            }
+            
+        }
     }
 }

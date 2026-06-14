@@ -26,6 +26,10 @@ public class NumberOfEnclaves{
         System.out.println("The number of enclosed land are: "+ans);
     }
 
+    /*
+     Same approach as Surrounded Region like connected component.
+    */
+
     public static int countLands(int[][]grid){
         int[][]visited = new int[grid.length][grid[0].length];
         Queue<int[]>element  = new LinkedList<>();
