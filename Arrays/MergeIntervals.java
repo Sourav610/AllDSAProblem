@@ -25,7 +25,8 @@ public class MergeIntervals {
 
         List<List<Integer>>ans = new ArrayList<>();
         // ans = mergeIntervals(arr);
-        ans = optimizeMergeIntervals(arr);
+        // ans = optimizeMergeIntervals(arr);
+        ans = mergeInterval2(arr);
 
         System.out.println("The array after mergin element: ");
         for (List<Integer> it : ans) {
@@ -36,11 +37,6 @@ public class MergeIntervals {
 
     public static List<List<Integer>> mergeIntervals(int[][]arr){
         List<List<Integer>>ans = new ArrayList<>();
-        Arrays.sort(arr,new Comparator<int[]>(){
-            public int compare(int []a, int []b){
-                return a[0] - b[0];
-            }
-        });
     
 
         for(int i = 0; i<arr.length; i++){
@@ -85,6 +81,29 @@ public class MergeIntervals {
             else{
                 ans.get(ans.size()-1).set(1,Math.max(ans.get(ans.size()-1).get(1),arr[i][1]));
             }
+        }
+        return ans;
+    }
+
+    public static List<List<Integer>> mergeInterval2(int[][]arr){
+        Arrays.sort(arr,(a,b) ->Integer.compare(a[0], b[0]));
+        //if arr is list the sorting will be like below
+        //arr.sort((a,b)->Integer.compare(a.get(0),b.get(0)));
+        List<List<Integer>>ans = new ArrayList<>();
+
+        int i = 0, j = 0;
+        while(i<arr.length){
+            int start = arr[i][0];
+            int end = arr[i][1];
+            j = i+1;
+
+            while(j<arr.length && end >= arr[j][0]){
+                start = Math.min(start,arr[j][0]);
+                end = Math.max(end,arr[j][1]);
+                j++;
+            }
+            ans.add(Arrays.asList(start,end));
+            i = j;
         }
         return ans;
     }

@@ -32,6 +32,5 @@ public class DiamonStarPattern {
             System.out.println();
         }
 
-
     }
 }
