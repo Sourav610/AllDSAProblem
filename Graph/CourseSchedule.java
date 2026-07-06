@@ -1,7 +1,10 @@
 package Graph;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /*
 There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1. 
@@ -21,22 +24,26 @@ public class CourseSchedule {
         for(int i = 0; i<V; i++){
             adj.add(new ArrayList<>());
         }
+
+        int[]visited = new int[V];
         for(int[]val: course){
             adj.get(val[0]).add(val[1]);
         }
 
-        int[]visited = new int[V];
+        
         
         boolean check = true;
 
-        for(int i = 0; i<V; i++){
-            if(visited[i] == 0){
-                if(dfs(i,adj,visited)== false){
-                    check = false;
-                    break;
-                }
-            }
-        }
+        // for(int i = 0; i<V; i++){
+        //     if(visited[i] == 0){
+        //         if(dfs(i,adj,visited)== false){
+        //             check = false;
+        //             break;
+        //         }
+        //     }
+        // }
+
+        check = usingBfs(course,V);
 
         System.out.println("The course can be complete: "+check);
 
@@ -51,24 +58,6 @@ public class CourseSchedule {
      T.C - O(V+E);
      S.C - O(V+E);
     */
-
-     /*
-     In a directed graph, a cycle exists if we can start at some node and keep following directed edges such that we eventually come back to the same node. Detecting such cycles is crucial in problems like task scheduling, dependency resolution, and deadlock detection.
-
-        A Topological Sort is a linear ordering of vertices such that for every directed edge from u to v, u comes before v in the ordering.
-         Importantly, a valid topological order exists only if the graph is a Directed Acyclic Graph (DAG). 
-         This gives us a powerful idea that if we try to generate a topological sort but cannot include all vertices (some nodes remain stuck due to dependencies),
-         then the graph must contain a cycle.
-
-        Kahn’s Algorithm (Topological Sorting Using BFS) makes this detection very straightforward. It repeatedly removes nodes with zero in-degree and if at the end,
-         the number of removed nodes is less than the total nodes, that means some nodes were locked in cycles, and hence a cycle exists.
-        Compute the in-degree of all nodes in the graph.
-        Add all nodes with in-degree equal to zero into a queue.
-        Process nodes from the queue one by one, increasing the count of processed nodes.
-        For each processed node, reduce the in-degree of its neighbors by one.
-        If any neighbor’s in-degree becomes zero, push it into the queue.
-        After processing, compare the count of processed nodes with the total number of nodes to decide if a cycle exists.
-     */
 
     public static boolean dfs(int i, List<List<Integer>>adj, int[]visited){
         visited[i] = 1;
@@ -87,4 +76,65 @@ public class CourseSchedule {
         visited[i] = 2;
         return true;
     }
+
+     /*
+     In a directed graph, a cycle exists if we can start at some node and keep following directed edges such that we eventually come back to the same node.
+      Detecting such cycles is crucial in problems like task scheduling, dependency resolution, and deadlock detection.
+
+        A Topological Sort is a linear ordering of vertices such that for every directed edge from u to v, u comes before v in the ordering.
+         Importantly, a valid topological order exists only if the graph is a Directed Acyclic Graph (DAG). 
+         This gives us a powerful idea that if we try to generate a topological sort but cannot include all vertices (some nodes remain stuck due to dependencies),
+         then the graph must contain a cycle.
+
+        Kahn’s Algorithm (Topological Sorting Using BFS) makes this detection very straightforward. It repeatedly removes nodes with zero in-degree and if at the end,
+         the number of removed nodes is less than the total nodes, that means some nodes were locked in cycles, and hence a cycle exists.
+        Compute the in-degree of all nodes in the graph.
+        Add all nodes with in-degree equal to zero into a queue.
+        Process nodes from the queue one by one, increasing the count of processed nodes.
+        For each processed node, reduce the in-degree of its neighbors by one.
+        If any neighbor’s in-degree becomes zero, push it into the queue.
+        After processing, compare the count of processed nodes with the total number of nodes to decide if a cycle exists.
+     */
+
+    public static boolean usingBfs(int[][]course,int V){
+        List<Integer>[]adj = new ArrayList[V];
+        for(int i = 0; i<V; i++){
+            adj[i] = new ArrayList<>();
+        }
+
+        int[]visited = new int[V];
+        for(int[]val: course){
+            adj[val[0]].add(val[1]);
+            visited[val[1]]++;
+        }
+
+        Queue<Integer>eleQueue = new LinkedList<>();
+
+        for(int i = 0; i<V; i++){
+            if(visited[i] == 0){
+                eleQueue.add(i);
+            }
+        }
+
+        int count = 0;
+        while(!eleQueue.isEmpty()){
+            int val = eleQueue.poll();
+            count++;
+            
+            for(int it: adj[val]){
+                visited[it]--;
+                if(visited[it] == 0){
+                    eleQueue.add(it);
+                }
+            }
+        }
+
+        if(count == V){
+            return true;
+        }
+
+        return false;
+
+    }
+   
 }
